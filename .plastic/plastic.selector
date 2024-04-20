@@ -1,0 +1,4 @@
+repository "NaviCamp@jhamanas939@cloud"
+  path "/"
+    br "/main"
+    co "/main"
