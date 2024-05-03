@@ -3,7 +3,8 @@ using System.Linq;
 using TMPro;
 using UnityEngine;
 
-public class TargetHandler : MonoBehaviour {
+public class TargetHandler : MonoBehaviour
+{
 
     [SerializeField]
     private NavigationController navigationController;
@@ -19,26 +20,31 @@ public class TargetHandler : MonoBehaviour {
 
     private List<TargetFacade> currentTargetItems = new List<TargetFacade>();
 
-    private void Start() {
+    private void Start()
+    {
         GenerateTargetItems();
         FillDropdownWithTargetItems();
     }
 
-    private void GenerateTargetItems() {
+    private void GenerateTargetItems()
+    {
         IEnumerable<Target> targets = GenerateTargetDataFromSource();
-        foreach (Target target in targets) {
+        foreach (Target target in targets)
+        {
             currentTargetItems.Add(CreateTargetFacade(target));
         }
     }
 
-    private IEnumerable<Target> GenerateTargetDataFromSource() {
+    private IEnumerable<Target> GenerateTargetDataFromSource()
+    {
         return JsonUtility.FromJson<TargetWrapper>(targetModelData.text).TargetList;
     }
 
-    private TargetFacade CreateTargetFacade(Target target) {
+    private TargetFacade CreateTargetFacade(Target target)
+    {
         GameObject targetObject = Instantiate(targetObjectPrefab, targetObjectsParentTransforms[target.FloorNumber], false);
         targetObject.SetActive(true);
-        targetObject.name = $"{target.FloorNumber} - {target.Name}";
+        targetObject.name = $"{target.Name}";
         targetObject.transform.localPosition = target.Position;
         targetObject.transform.localRotation = Quaternion.Euler(target.Rotation);
 
@@ -49,9 +55,11 @@ public class TargetHandler : MonoBehaviour {
         return targetData;
     }
 
-    private void FillDropdownWithTargetItems() {
+    private void FillDropdownWithTargetItems()
+    {
         List<TMP_Dropdown.OptionData> targetFacadeOptionData =
-            currentTargetItems.Select(x => new TMP_Dropdown.OptionData {
+            currentTargetItems.Select(x => new TMP_Dropdown.OptionData
+            {
                 text = $"{x.FloorNumber} - {x.Name}"
             }).ToList();
 
@@ -59,19 +67,23 @@ public class TargetHandler : MonoBehaviour {
         targetDataDropdown.AddOptions(targetFacadeOptionData);
     }
 
-    public void SetSelectedTargetPositionWithDropdown(int selectedValue) {
+    public void SetSelectedTargetPositionWithDropdown(int selectedValue)
+    {
         navigationController.TargetPosition = GetCurrentlySelectedTarget(selectedValue);
     }
 
-    private Vector3 GetCurrentlySelectedTarget(int selectedValue) {
-        if (selectedValue >= currentTargetItems.Count) {
+    private Vector3 GetCurrentlySelectedTarget(int selectedValue)
+    {
+        if (selectedValue >= currentTargetItems.Count)
+        {
             return Vector3.zero;
         }
 
         return currentTargetItems[selectedValue].transform.position;
     }
 
-    public TargetFacade GetCurrentTargetByTargetText(string targetText) {
+    public TargetFacade GetCurrentTargetByTargetText(string targetText)
+    {
         return currentTargetItems.Find(x =>
             x.Name.ToLower().Equals(targetText.ToLower()));
     }
