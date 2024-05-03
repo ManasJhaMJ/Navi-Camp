@@ -1,0 +1,60 @@
+{
+	"TargetList": [
+		{
+			"Name": "HOD Room",
+			"FloorNumber": 0,
+			"Position": {
+				"x": -18.6,
+				"y": 1,
+				"z": -2.82
+			},
+			"Rotation": {
+				"x": 0.0,
+				"y": 0.0,
+				"z": 0.0
+			}
+		},
+		{
+			"Name": "Stairs",
+			"FloorNumber": 0,
+			"Position": {
+				"x": 0,
+				"y": 1,
+				"z": -0.52
+			},
+			"Rotation": {
+				"x": 0.0,
+				"y": 0.0,
+				"z": 0.0
+			}
+		},
+		{
+			"Name": "Boys Washroom",
+			"FloorNumber": 0,
+			"Position": {
+				"x": 22.25,
+				"y": 1,
+				"z": 20.17
+			},
+			"Rotation": {
+				"x": 0.0,
+				"y": 0.0,
+				"z": 0.0
+			}
+		},
+		{
+			"Name": "Girls Washroom",
+			"FloorNumber": 0,
+			"Position": {
+				"x": -22.28,
+				"y": 1,
+				"z": 20.17
+			},
+			"Rotation": {
+				"x": 0.0,
+				"y": -90.0,
+				"z": 0.0
+			}
+		}
+	]
+}
